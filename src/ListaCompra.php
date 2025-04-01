@@ -11,28 +11,28 @@ class ListaCompra
     }
 
     public function ejecutarInstruccion(string $instruccion): string {
-        $items = explode(" ", $instruccion);
-        if ($items[0] == "añadir"){
-            if (array_key_exists(strtolower($items[1]), $this->listaCompra)) {
-                if (count($items) == 2) {
-                    $this->listaCompra[strtolower($items[1])] += 1;
+        $partesInstruccion = explode(" ", $instruccion);
+        if ($partesInstruccion[0] == "añadir"){
+            if (array_key_exists(strtolower($partesInstruccion[1]), $this->listaCompra)) {
+                if (count($partesInstruccion) == 2) {
+                    $this->listaCompra[strtolower($partesInstruccion[1])] += 1;
                 } else {
-                    $this->listaCompra[strtolower($items[1])] += (int)$items[2];
+                    $this->listaCompra[strtolower($partesInstruccion[1])] += (int)$partesInstruccion[2];
                 }
             } else {
-                if (count($items) == 2) {
-                    $this->listaCompra[strtolower($items[1])] = 1;
+                if (count($partesInstruccion) == 2) {
+                    $this->listaCompra[strtolower($partesInstruccion[1])] = 1;
                 } else {
-                    $this->listaCompra[strtolower($items[1])] = (int)$items[2];
+                    $this->listaCompra[strtolower($partesInstruccion[1])] = (int)$partesInstruccion[2];
                 }
             }
-        } else if ($items[0] == "eliminar") {
-            if (array_key_exists(strtolower($items[1]), $this->listaCompra)) {
-                unset($this->listaCompra[strtolower($items[1])]);
+        } else if ($partesInstruccion[0] == "eliminar") {
+            if (array_key_exists(strtolower($partesInstruccion[1]), $this->listaCompra)) {
+                unset($this->listaCompra[strtolower($partesInstruccion[1])]);
             } else {
                 return "El producto seleccionado no existe.";
             }
-        } else if ($items[0] == "vaciar") {
+        } else if ($partesInstruccion[0] == "vaciar") {
             $this->listaCompra = [];
         }
         $lista = "";
