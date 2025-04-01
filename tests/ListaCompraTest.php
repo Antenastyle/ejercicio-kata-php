@@ -14,4 +14,12 @@ class ListaCompraTest extends TestCase
         parent::setUp();
         $this->listaCompra = new ListaCompra();
     }
+
+    /**
+     * @test
+     */
+    public function givenAñadirPanReturnsTheItemInTheList(): void
+    {
+        $this->assertEquals('pan x1,', $this->listaCompra->ejecutarInstruccion("añadir pan"));
+    }
 }
