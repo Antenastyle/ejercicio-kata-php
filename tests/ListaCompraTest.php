@@ -22,4 +22,12 @@ class ListaCompraTest extends TestCase
     {
         $this->assertEquals('pan x1,', $this->listaCompra->ejecutarInstruccion("añadir pan"));
     }
+
+    /**
+     * @test
+     */
+    public function givenAñadirPan2ReturnsTheItemInTheList(): void
+    {
+        $this->assertEquals('pan x2,', $this->listaCompra->ejecutarInstruccion("añadir pan 2"));
+    }
 }
