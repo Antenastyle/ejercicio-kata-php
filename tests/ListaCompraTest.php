@@ -39,4 +39,14 @@ class ListaCompraTest extends TestCase
         $this->listaCompra->ejecutarInstruccion("añadir pan 2");
         $this->assertEquals('', $this->listaCompra->ejecutarInstruccion("eliminar pan"));
     }
+
+    /**
+     * @test
+     */
+    public function givenAñadirPan2AndAñadirLeche2AndEliminarPanReturnsLecheInList(): void
+    {
+        $this->listaCompra->ejecutarInstruccion("añadir pan 2");
+        $this->listaCompra->ejecutarInstruccion("añadir leche 2");
+        $this->assertEquals('leche x2,', $this->listaCompra->ejecutarInstruccion("eliminar pan"));
+    }
 }
