@@ -13,20 +13,13 @@ class ListaCompra
     public function ejecutarInstruccion(string $instruccion): string {
         $partesInstruccion = explode(" ", $instruccion);
         $objeto = strtolower($partesInstruccion[1]);
-        $cantidad = (int)$partesInstruccion[2];
+        $palabrasDeInstruccion = count($partesInstruccion);
+        $cantidad = $this->cantidadDeObjetoIndicada($palabrasDeInstruccion) ? (int)$partesInstruccion[2] : 1;
         if ($partesInstruccion[0] == "añadir"){
             if (array_key_exists($objeto, $this->listaCompra)) {
-                if (count($partesInstruccion) == 2) {
-                    $this->listaCompra[$objeto] += 1;
-                } else {
-                    $this->listaCompra[$objeto] += $cantidad;
-                }
+                $this->listaCompra[$objeto] += $cantidad;
             } else {
-                if (count($partesInstruccion) == 2) {
-                    $this->listaCompra[$objeto] = 1;
-                } else {
-                    $this->listaCompra[$objeto] = $cantidad;
-                }
+                $this->listaCompra[$objeto] = $cantidad;
             }
         } else if ($partesInstruccion[0] == "eliminar") {
             if (array_key_exists($objeto, $this->listaCompra)) {
@@ -39,6 +32,10 @@ class ListaCompra
         }
 
         return $this->imprimirListaCompra();
+    }
+
+    private function cantidadDeObjetoIndicada($palabrasDeInstruccion): bool {
+        return !($palabrasDeInstruccion == 2);
     }
 
     private function imprimirListaCompra(): string {
