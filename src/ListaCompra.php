@@ -16,13 +16,13 @@ class ListaCompra
         $palabrasDeInstruccion = count($partesInstruccion);
         $cantidad = $this->cantidadDeObjetoIndicada($palabrasDeInstruccion) ? (int)$partesInstruccion[2] : 1;
         if ($partesInstruccion[0] == "añadir"){
-            if (existeObjetoEnListaCompra($objeto)) {
+            if ($this->existeObjetoEnListaCompra($objeto)) {
                 $this->listaCompra[$objeto] += $cantidad;
             } else {
                 $this->listaCompra[$objeto] = $cantidad;
             }
         } else if ($partesInstruccion[0] == "eliminar") {
-            if (existeObjetoEnListaCompra($objeto)) {
+            if ($this->existeObjetoEnListaCompra($objeto)) {
                 unset($this->listaCompra[$objeto]);
             } else {
                 return "El producto seleccionado no existe.";
