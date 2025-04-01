@@ -13,18 +13,19 @@ class ListaCompra
     public function ejecutarInstruccion(string $instruccion): string {
         $partesInstruccion = explode(" ", $instruccion);
         $objeto = strtolower($partesInstruccion[1]);
+        $cantidad = (int)$partesInstruccion[2];
         if ($partesInstruccion[0] == "añadir"){
             if (array_key_exists($objeto, $this->listaCompra)) {
                 if (count($partesInstruccion) == 2) {
                     $this->listaCompra[$objeto] += 1;
                 } else {
-                    $this->listaCompra[$objeto] += (int)$partesInstruccion[2];
+                    $this->listaCompra[$objeto] += $cantidad;
                 }
             } else {
                 if (count($partesInstruccion) == 2) {
                     $this->listaCompra[$objeto] = 1;
                 } else {
-                    $this->listaCompra[$objeto] = (int)$partesInstruccion[2];
+                    $this->listaCompra[$objeto] = $cantidad;
                 }
             }
         } else if ($partesInstruccion[0] == "eliminar") {
