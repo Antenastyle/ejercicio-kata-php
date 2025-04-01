@@ -35,10 +35,16 @@ class ListaCompra
         } else if ($partesInstruccion[0] == "vaciar") {
             $this->listaCompra = [];
         }
+
+        return $this->imprimirListaCompra();
+    }
+
+    private function imprimirListaCompra(): string {
         $lista = "";
         foreach ($this->listaCompra as $item => $value) {
             $lista = $lista . "$item x$value,";
         }
+
         return $lista;
     }
 }
