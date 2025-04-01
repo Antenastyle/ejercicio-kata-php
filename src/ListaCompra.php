@@ -12,23 +12,24 @@ class ListaCompra
 
     public function ejecutarInstruccion(string $instruccion): string {
         $partesInstruccion = explode(" ", $instruccion);
+        $objeto = strtolower($partesInstruccion[1]);
         if ($partesInstruccion[0] == "añadir"){
-            if (array_key_exists(strtolower($partesInstruccion[1]), $this->listaCompra)) {
+            if (array_key_exists($objeto, $this->listaCompra)) {
                 if (count($partesInstruccion) == 2) {
-                    $this->listaCompra[strtolower($partesInstruccion[1])] += 1;
+                    $this->listaCompra[$objeto] += 1;
                 } else {
-                    $this->listaCompra[strtolower($partesInstruccion[1])] += (int)$partesInstruccion[2];
+                    $this->listaCompra[$objeto] += (int)$partesInstruccion[2];
                 }
             } else {
                 if (count($partesInstruccion) == 2) {
-                    $this->listaCompra[strtolower($partesInstruccion[1])] = 1;
+                    $this->listaCompra[$objeto] = 1;
                 } else {
-                    $this->listaCompra[strtolower($partesInstruccion[1])] = (int)$partesInstruccion[2];
+                    $this->listaCompra[$objeto] = (int)$partesInstruccion[2];
                 }
             }
         } else if ($partesInstruccion[0] == "eliminar") {
-            if (array_key_exists(strtolower($partesInstruccion[1]), $this->listaCompra)) {
-                unset($this->listaCompra[strtolower($partesInstruccion[1])]);
+            if (array_key_exists($objeto, $this->listaCompra)) {
+                unset($this->listaCompra[$objeto]);
             } else {
                 return "El producto seleccionado no existe.";
             }
