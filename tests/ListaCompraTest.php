@@ -30,4 +30,13 @@ class ListaCompraTest extends TestCase
     {
         $this->assertEquals('pan x2,', $this->listaCompra->ejecutarInstruccion("añadir pan 2"));
     }
+
+    /**
+     * @test
+     */
+    public function givenAñadirPan2AndEliminarPanReturnsEmptyList(): void
+    {
+        $this->listaCompra->ejecutarInstruccion("añadir pan 2");
+        $this->assertEquals('', $this->listaCompra->ejecutarInstruccion("eliminar pan"));
+    }
 }
