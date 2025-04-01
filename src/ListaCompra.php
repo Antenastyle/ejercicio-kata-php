@@ -40,11 +40,11 @@ class ListaCompra
     }
 
     private function imprimirListaCompra(): string {
-        $lista = "";
-        foreach ($this->listaCompra as $item => $value) {
-            $lista = $lista . "$item x$value,";
+        $listaCompraAImprimir = "";
+        foreach ($this->listaCompra as $objeto => $cantidad) {
+            $listaCompraAImprimir = $listaCompraAImprimir . "$objeto x$cantidad,";
         }
 
-        return $lista;
+        return $listaCompraAImprimir;
     }
 }
